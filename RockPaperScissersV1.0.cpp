@@ -72,44 +72,31 @@ void PrintRoundResults(stRoundNumber RoundNumber) {
 	cout << "_______________________________________" << endl;
 }
 
-enWinner GetRoundWinner(stRoundNumber& RoundNumber) {
+
+enWinner GetRoundWinner(stRoundNumber RoundNumber) {
 
 	if (RoundNumber.Player1Choice == RoundNumber.ComputerChoice) {
 		return enWinner::Draw;
 	}
 
 	switch (RoundNumber.Player1Choice) {
-	case enGameChoice::Paper: {
-
-		if (RoundNumber.ComputerChoice == enGameChoice::Scissors) {
-			return enWinner::Computer;
-		}
-		break;
-
-	}
-	case enGameChoice::Rock: {
-
+	case enGameChoice::Rock:
 		if (RoundNumber.ComputerChoice == enGameChoice::Paper) {
 			return enWinner::Computer;
 		}
 		break;
-
-	}
-
-	case enGameChoice::Scissors: {
-
+	case enGameChoice::Paper:
+		if (RoundNumber.ComputerChoice == enGameChoice::Scissors) {
+			return enWinner::Computer;
+		}
+		break;
+	case enGameChoice::Scissors:
 		if (RoundNumber.ComputerChoice == enGameChoice::Rock) {
 			return enWinner::Computer;
 		}
 		break;
-
 	}
-
-	default: {
-		return enWinner::Player1;
-	}
-
-	}
+	return enWinner::Player1;
 }
 
 enWinner WhoWonTheGame(short Player1WinTimes, short ComputerWinTimes) {
